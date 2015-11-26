@@ -210,7 +210,7 @@ def get_issues(bb_url, start_id):
     issues = []
 
     while True:
-        url = "{}/?start={}".format(
+        url = "{}/?start={}&count=50&sort=title".format(
             bb_url,
             start_id
         )
@@ -330,7 +330,7 @@ if __name__ == "__main__":
 
     # push them in GitHub (issues comments are fetched here)
     gh_username, gh_repository = options.github_repo.split('/')
-    auth = (gh_username, github_password)
+    auth = (options.github_username, github_password)
 
     # Sort issues, to sync issue numbers on freshly created GitHub projects.
     # Note: not memory efficient, could use too much memory on large projects.
